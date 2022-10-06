@@ -1,24 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import "bulma/css/bulma.min.css";
+import CourseList from "./pages/CourseList.js";
+import CourseCreate from "./pages/CourseCreate.js";
+import CourseEdit from "./pages/CourseEdit.js";
+import UserList from "./pages/UserList.js";
+import CourseChart from "./pages/CourseChart.js";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="container p-2 is-max-widescreen">
+        <div className="columns">
+          <div className="column is-full">
+            <Switch>
+              <Route exact path="/">
+                <CourseList />
+              </Route>
+              <Route exact path="/create">
+                <CourseCreate />
+              </Route>
+              <Route exact path="/edit/:id">
+                <CourseEdit />
+              </Route>
+              <Route exact path="/users">
+                <UserList />
+              </Route>
+              <Route exact path="/chart">
+                <CourseChart />
+              </Route>
+            </Switch>
+          </div>
+        </div>
+      </div>
+    </Router>
   );
 }
 
